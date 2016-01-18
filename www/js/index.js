@@ -46,6 +46,15 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
+        navigator.geolocation.getCurrentPosition(
+            function(position){
+                latitude = position.coords.latitude;
+                longitude = position.coords.longitude;
+                ymaps.ready(init);
+                
+            },
+            function(error){
+        });
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
@@ -57,15 +66,7 @@ var app = {
         receivedElement.setAttribute('style', 'display:block;');
 
         console.log('Received Event: ' + id);
-        navigator.geolocation.getCurrentPosition(
-            function(position){
-                latitude = position.coords.latitude;
-                longitude = position.coords.longitude;
-                ymaps.ready(init);
-                
-            },
-            function(error){
-        });
+        
         
     }
 };
