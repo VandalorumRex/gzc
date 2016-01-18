@@ -22,7 +22,7 @@ var myMap, longitude, latitude, myPlacemark;
 function init(){     
     myMap = new ymaps.Map("map", {
         center: [latitude, longitude],
-        zoom: 10
+        zoom: 12
     });
     myPlacemark = new ymaps.Placemark([latitude, longitude], { hintContent: 'Ваше местоположение', balloonContent: 'Ваше местоположение' });
     myMap.geoObjects.add(myPlacemark);
