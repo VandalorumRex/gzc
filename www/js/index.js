@@ -16,6 +16,16 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+
+
+var myMap, longitude, latitude;
+function init(){     
+    myMap = new ymaps.Map("map", {
+        center: [latitude, longitude],
+        zoom: 10
+    });
+}
+
 var app = {
     // Application Constructor
     initialize: function() {
@@ -45,5 +55,13 @@ var app = {
         receivedElement.setAttribute('style', 'display:block;');
 
         console.log('Received Event: ' + id);
+        navigator.geolocation.getCurrentPosition(
+            function(position){
+                latitude = position.coords.latitude;
+                longitude = position.coords.longitude;
+            },
+            function(error){
+        });
+        ymaps.ready(init);
     }
 };
