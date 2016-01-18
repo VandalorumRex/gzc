@@ -18,7 +18,7 @@
  */
 
 
-var myMap, longitude, latitude;
+var myMap, longitude, latitude, myPlacemark;
 function init(){     
     myMap = new ymaps.Map("map", {
         center: [latitude, longitude],
@@ -59,9 +59,12 @@ var app = {
             function(position){
                 latitude = position.coords.latitude;
                 longitude = position.coords.longitude;
+                ymaps.ready(init);
+                myPlacemark = new ymaps.Placemark([latitude, longitude], { hintContent: 'Ваше местоположение', balloonContent: 'Ваше местоположение' });
+                myMap.geoObjects.add(myPlacemark);
             },
             function(error){
         });
-        ymaps.ready(init);
+        
     }
 };
