@@ -20,6 +20,10 @@
 
 var myMap, longitude, latitude, myPlacemark;
 var choices;
+var street = document.querySelector('.street');;
+street.addEventListener('keyup',function(event){
+        streetsList(this.id);
+});
 function init(){     
     myMap = new ymaps.Map("map", {
         center: [latitude, longitude],
@@ -72,11 +76,17 @@ var app = {
     }
 };
 
-function streetsList(){
-    send_post("http://gazel.mansur.ml/index.php","",function(data){
-        //choices = JSON.stringify(data);
-        alert(data);
-    });
+function streetsList(id){
+    //var id = this.id;
+    var uram = document.getElementById(id).value; //alert(uram);
+    if (uram.length>2) {
+        var params = "street="+uram; //alert(params);
+        send_post("http://gazel.mansur.ml/index.php",params,function(data){
+            //choices = JSON.stringify(data);
+            document.getElementById('streets').innerHTML = data;
+            alert(data);
+        });
+    } 
 }
 
 function send_post(url,params,func){

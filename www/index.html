@@ -40,8 +40,9 @@
                 <p class="event listening">Connecting to Device</p>
                 <p class="event received">
                     <div id="map" style="width: 250px; height: 150px"></div>
-                    <input type="text" id="from" /><br />
-                    <input type="text" id="to" /><br />
+                    <input class="street" type="text" id="from" list="streets" /><br />
+                    <input class="street" type="text" id="to" list="streets" /><br />
+                    <datalist id="streets"></datalist>
                     <button id="zakaz">Сделать заказ</button>
                 </p>
             </div>
