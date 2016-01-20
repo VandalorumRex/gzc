@@ -58,7 +58,7 @@ body {
     margin:10px auto;  /* offset vertical: half of image height and text area height */
                                    /* offset horizontal: half of text area width */
 }
-#map,#zakaz{
+#map,#zakaz,input[type="text"]{
     margin:10px auto;
     clear:both;
     display: block;

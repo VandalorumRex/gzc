@@ -19,6 +19,7 @@
 
 
 var myMap, longitude, latitude, myPlacemark;
+var choices;
 function init(){     
     myMap = new ymaps.Map("map", {
         center: [latitude, longitude],
@@ -51,7 +52,7 @@ var app = {
                 latitude = position.coords.latitude;
                 longitude = position.coords.longitude;
                 ymaps.ready(init);
-                
+                //streetsList();
             },
             function(error){
         });
@@ -70,3 +71,31 @@ var app = {
         
     }
 };
+
+function streetsList(){
+    send_post("http://gazel.mansur.ml/index.php","",function(data){
+        //choices = JSON.stringify(data);
+        alert(data);
+    });
+}
+
+function send_post(url,params,func){
+    var http = new XMLHttpRequest();
+    //var url = "get_data.php";
+    //var params = "lorem=ipsum&name=binny";
+    http.open("POST", url, true);
+
+    //Send the proper header information along with the request
+    http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    http.setRequestHeader("Content-length", params.length);
+    http.setRequestHeader("Connection", "close");
+
+    http.onreadystatechange = function() {//Call a function when the state changes.
+            if(http.readyState === 4 && http.status === 200) {
+                    //alert(http.responseText);
+                    func(http.responseText);
+            }
+
+    };
+    http.send(params);
+}
