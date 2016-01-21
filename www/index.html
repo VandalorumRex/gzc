@@ -45,9 +45,18 @@
                     <!--input class="street" type="text" id="from" list="streets" /><br />
                     
                     <input class="street" type="text" id="to" list="streets" /><br />
-                    <select id="streets"></select>
-                    <button id="zakaz">Сделать заказ</button-->
+                    <select id="streets"></select-->
                     <div data-role="page" id="main_page" data-theme="b">
+                        <div data-role="header" >
+                            <div class="logo"></div>
+                            <h1>ГРУЗОПЕРЕВОЗКИ КАЗАНИ</h1>
+                            <a href="#settings" data-icon="gear" class="ui-btn-right">Options</a>
+                        </div>
+                        <div data-role="content" >
+                            <button id="zakaz">Сделать заказ</button>
+                        </div>
+                        <div data-role="footer"></div>
+                    <div data-role="page" id="second_page" data-theme="b">
                         <div data-role="header" >
                             <div class="logo"></div>
                             <h1>ГРУЗОПЕРЕВОЗКИ КАЗАНИ</h1>
@@ -71,9 +80,7 @@
                             <label for="slider">Грузчики:</label>
                             <input type="range" name="slider" id="slider" value="1" min="1" max="5" />
                         </div>
-                        <div data-role="footer">
-                            
-                        </div>
+                        <div data-role="footer"></div>  
                     </div>	
                 </p>
             </div>

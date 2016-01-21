@@ -28,23 +28,53 @@
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
         <link rel="stylesheet" type="text/css" href="css/index.css" />
         <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
-        <link href="js/jQuery-autoComplete-master/jquery.auto-complete.css" rel="stylesheet" />
-        <script src="js/jQuery-autoComplete-master/jquery.auto-complete.js"></script>
+        <!--link href="js/jQuery-autoComplete-master/jquery.auto-complete.css" rel="stylesheet" />
+        <script src="js/jQuery-autoComplete-master/jquery.auto-complete.js"></script-->
+        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0a2/jquery.mobile-1.0a2.min.css" />
+        <script src="http://code.jquery.com/jquery-1.4.4.min.js"></script>
+        <script src="http://code.jquery.com/mobile/1.0a2/jquery.mobile-1.0a2.min.js"></script>
         <title>Hello World</title>
     </head>
     <body>
         <div class="app">
-            <div class="logo"></div>
-            <h1>ГРУЗОПЕРЕВОЗКИ КАЗАНИ</h1>
+            
             <div id="deviceready" class="blink">
                 <p class="event listening">Connecting to Device</p>
                 <p class="event received">
-                    <div id="map" style="width: 250px; height: 150px"></div>
-                    <input class="street" type="text" id="from" list="streets" /><br />
+                    
+                    <!--input class="street" type="text" id="from" list="streets" /><br />
                     
                     <input class="street" type="text" id="to" list="streets" /><br />
                     <select id="streets"></select>
-                    <button id="zakaz">Сделать заказ</button>
+                    <button id="zakaz">Сделать заказ</button-->
+                    <div data-role="page" id="main_page" data-theme="b">
+                        <div data-role="header" >
+                            <div class="logo"></div>
+                            <h1>ГРУЗОПЕРЕВОЗКИ КАЗАНИ</h1>
+                            <a href="#settings" data-icon="gear" class="ui-btn-right">Options</a>
+                        </div>
+                        <div data-role="content" >
+                            <!--div id="map" style="width: 250px; height: 150px"></div-->
+                            <label for="from">Откуда</label>
+                            <input type="text" name="from" id="from" value="" />
+                            <ul data-role="listview" data-inset="true" id="searchresult">					
+                            </ul>
+                            <label for="to">Куда</label>
+                            <input type="text" name="to" id="to" value="" />
+                            <label for="car-type">Тип машины</label>
+                            <select name="car-type" id="cat-type" placeholder="Тип машины">
+                                <option value="standard">Газель (до 1,5 тонн)</option>
+                                <option value="standard">3-тонник</option>
+                                <option value="standard">5-тонник</option>
+                                <option value="standard">Лафет</option>
+                            </select>
+                            <label for="slider">Грузчики:</label>
+                            <input type="range" name="slider" id="slider" value="1" min="1" max="5" />
+                        </div>
+                        <div data-role="footer">
+                            
+                        </div>
+                    </div>	
                 </p>
             </div>
         </div>
