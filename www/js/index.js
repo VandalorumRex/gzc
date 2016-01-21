@@ -82,9 +82,11 @@ function streetsList(id){
     if (uram.length>2) {
         var params = "street="+uram; //alert(params);
         send_post("http://gazel.mansur.ml/index.php",params,function(data){
-            //choices = JSON.stringify(data);
+            //choices = JSON.parce(data);
             document.getElementById('streets').innerHTML = data;
             alert(data);
+            //var d = document.createElement('div');
+            
         });
     } 
 }
