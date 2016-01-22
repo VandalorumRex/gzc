@@ -33,6 +33,22 @@ function init(){
     myMap.geoObjects.add(myPlacemark);
 }
 
+function google_map_init() {
+      navigator.geolocation.getCurrentPosition(function(location) {						
+		var point = new google.maps.LatLng(location.coords.latitude, location.coords.longitude);
+		var myOptions = {
+			zoom: 13,
+			center: point,
+			mapTypeId: google.maps.MapTypeId.ROADMAP
+		};
+		var map = new google.maps.Map(document.getElementById("map"),myOptions);
+		var marker = new google.maps.Marker({position: point,map: map});						
+		google.maps.event.addListener(marker, 'click', function() {
+			alert("Current coodinates are: latitude "+location.coords.latitude+", longitude "+location.coords.longitude);
+		});
+	});	  
+}
+
 var app = {
     // Application Constructor
     initialize: function() {
@@ -51,11 +67,13 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
+        
         navigator.geolocation.getCurrentPosition(
             function(position){
                 latitude = position.coords.latitude;
                 longitude = position.coords.longitude;
-                ymaps.ready(init);
+                //ymaps.ready(init);
+                google_map_init();
                 //alert(longitude);
                 //streetsList();
             },
