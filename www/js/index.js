@@ -72,11 +72,10 @@ var app = {
             function(position){
                 latitude = position.coords.latitude;
                 longitude = position.coords.longitude;
-                //ymaps.ready(init);
-                google_map_init();
+                ymaps.ready(init);
+                //google_map_init();
                 //alert(longitude);
-                //streetsList();
-                $("#phone").mask("+7(999) 999-99-99");
+                //streetsList(); 
             },
             function(error){
         });
@@ -131,21 +130,4 @@ function send_post(url,params,func){
     };
     http.send(params);
 }
-function check(inp,btn) {
-    if(inp.val()=='') {
-        //document.getElementById('name').setAttribute('class',klass+' invalid');
-        inp.css('border-color','red');
-        btn.hide();
-   }
-   else{
-       inp.css('border-color','#b3b3b3');
-       btn.show();
-   }
-}
-$('#page-1 input').live('blur',function(){
-   check($(this),$('#begin'));  
-});
-$('#page-1 #begin').live('focus',function(){
-   check($('#name'),$('#begin'));
-   check($('#phone'),$('#begin'));  
-});
+
