@@ -131,3 +131,9 @@ function send_post(url,params,func){
     http.send(params);
 }
 
+$('#begin').live('click',function(){
+    var params = 'user_login='+$('#phone').val()+'&user_email='+$('#phone').val()+'@mail.ru';
+    send_post('http://gazel.local?func=enter',params,function(uid){
+        $('#uid').val(uid);
+    });
+});
