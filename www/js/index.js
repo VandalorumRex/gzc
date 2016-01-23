@@ -76,6 +76,7 @@ var app = {
                 google_map_init();
                 //alert(longitude);
                 //streetsList();
+                $("#phone").mask("+7(999) 999-99-99");
             },
             function(error){
         });
@@ -130,17 +131,21 @@ function send_post(url,params,func){
     };
     http.send(params);
 }
-
-/*$("#from").keyup(function(){
-    streetsList('from');
-	var list='';
-	$.each(res, function(index, value) {
-		list+='<li role="option" tabindex="0" data-theme="a" class="ui-btn ui-li ui-btn-up-a"><div class="ui-btn-inner"><div class="ui-btn-text">'+value+'</div><span class="ui-icon ui-icon-arrow-r"></span></div></li>';
-	});							
-        $("#searchresult").html(list);	
-});*/
-
-/*var shuffle = function(o){ //v1.0
-for(var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
-    return o;
-};*/
+function check(inp,btn) {
+    if(inp.val()=='') {
+        //document.getElementById('name').setAttribute('class',klass+' invalid');
+        inp.css('border-color','red');
+        btn.hide();
+   }
+   else{
+       inp.css('border-color','#b3b3b3');
+       btn.show();
+   }
+}
+$('#page-1 input').live('blur',function(){
+   check($(this),$('#begin'));  
+});
+$('#page-1 #begin').live('focus',function(){
+   check($('#name'),$('#begin'));
+   check($('#phone'),$('#begin'));  
+});

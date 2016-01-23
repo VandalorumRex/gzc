@@ -34,7 +34,7 @@
         <script src="http://code.jquery.com/jquery-1.4.4.min.js"></script>
         <script src="http://code.jquery.com/mobile/1.0a2/jquery.mobile-1.0a2.min.js"></script>
         <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
-        <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+        <script type="text/javascript" src="http://www.google.com/jsapi"></script>    
         <title>Avtogruz</title>
     </head>
     <body>
@@ -51,20 +51,24 @@
                     <div data-role="page" id="page-1" data-theme="b" data-dom-cache="true">
                         <div data-role="header" >
                             <div class="logo"></div>
-                            <h1>ГРУЗОПЕРЕВОЗКИ КАЗАНИ</h1>
-                            <a href="#settings" data-icon="gear" class="ui-btn-right">Options</a>
+                            <h1>ГРУЗОПЕРЕВОЗКИ</h1>
+                            <!--a href="#settings" data-icon="gear" class="ui-btn-right">Options</a-->
                         </div>
                         <div data-role="content" >
-                            <a href="#page-2" data-role="button">Сделать заказ</a href="#page_2">
-                            <div id="map" style="margin:0 auto;clear:both;width:250px;height:200px;background:black;"></div>
+                            <label for="name">Ваша имя</label>
+                            <input type="text" name="name" id="name" />
+                            <label for="phone">Ваша телефон</label>
+                            <input type="phone" name="phone" id="phone" placeholder="10 цифр" pattern="^[0-9]{10}$"/>
+                            <a href="#page-2" data-role="button" id="begin">Начать заказ</a>
+                            
+                            <!--div id="map" style="margin:0 auto;clear:both;width:250px;height:200px;background:black;"></div-->
                         </div>
                         <div data-role="footer"></div>
                     </div>
                     <div data-role="page" id="page-2" data-theme="b">
                         <div data-role="header" >
-                            <div class="logo"></div>
-                            <h1>ГРУЗОПЕРЕВОЗКИ КАЗАНИ</h1>
-                            <a href="#settings" data-icon="gear" class="ui-btn-right">Options</a>
+                            <h1>ГРУЗОПЕРЕВОЗКИ</h1>
+                            <!--a href="#settings" data-icon="gear" class="ui-btn-right">Options</a-->
                         </div>
                         <div data-role="content" >                          
                             <label for="from">Откуда</label>
@@ -86,14 +90,14 @@
                             <input type="checkbox" name="loaders" id="loaders" checked/>
                             <label for="price">Ваша цена</label>
                             <input type="text" name="price" id="price" placeholder="минимум 300" min="300"/>
-                            <label for="phone">Ваша телефон</label>
-                            <input type="text" name="phone" id="phone"/>
+                            <a href="#page-2" data-role="button">Сделать заказ</a>
                         </div>
                         <div data-role="footer"></div>  
                     </div>	
                 </p>
             </div>
         </div>
+        <script type="text/javascript" src="js/jquery.maskedinput.min.js"></script>
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript">
