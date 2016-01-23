@@ -72,10 +72,10 @@ var app = {
             function(position){
                 latitude = position.coords.latitude;
                 longitude = position.coords.longitude;
-                //ymaps.ready(init);
-                google_map_init();
+                ymaps.ready(init);
+                //google_map_init();
                 //alert(longitude);
-                //streetsList();
+                //streetsList(); 
             },
             function(error){
         });
@@ -131,16 +131,3 @@ function send_post(url,params,func){
     http.send(params);
 }
 
-/*$("#from").keyup(function(){
-    streetsList('from');
-	var list='';
-	$.each(res, function(index, value) {
-		list+='<li role="option" tabindex="0" data-theme="a" class="ui-btn ui-li ui-btn-up-a"><div class="ui-btn-inner"><div class="ui-btn-text">'+value+'</div><span class="ui-icon ui-icon-arrow-r"></span></div></li>';
-	});							
-        $("#searchresult").html(list);	
-});*/
-
-/*var shuffle = function(o){ //v1.0
-for(var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
-    return o;
-};*/
