@@ -14,14 +14,14 @@ $('#page-1 input').live('blur',function(){
 });
 $('#page-1 #begin').live('focus',function(){
    check($('#name'),$('#begin'));
-   check($('#phone'),$('#begin'));
-   check($('#from'),$('#begin'));
-   check($('#to'),$('#begin'));
+   check($('#phone'),$('#begin'));  
 });
 $('#page-2 input').live('blur',function(){
    check($(this),$('#order'));  
 });
 $('#page-2 #order').live('focus',function(){
+    check($('#from'),$('#order'));
+   check($('#to'),$('#order'));
    check($('#date'),$('#order'));
    check($('#time'),$('#order'));
    check($('#price'),$('#order'));
