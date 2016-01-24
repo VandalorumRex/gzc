@@ -1,4 +1,4 @@
-//var app_state = 'test';
+var app_state = 'test';
 if (app_state=='test') { //TEST   
     var server = 'http://gazel.local';
 }
@@ -28,14 +28,17 @@ $('#phone').live('blur',function(){
     if (str.match(/^[0-9]{10}$/)) {
         $(this).css('border-color','#b3b3b3');
         btn.show();
-        $.post(server+'?func=check',
+        $.post('http://gazel.mansur.ml?func=check',
                {'user_login' : this.value},
                function(data){
                     if (data) {
                         var json = JSON.parse(data);
                         //alert(json.first_name);
                         $('#name').val(json.first_name);
-                        $('#town').val(json.town);
+                       /* $('#town option').each(function(){
+                            $(this).attr('selected',false);//.selectmenu('refresh', true);
+                        });*/
+                        $('#town').val(json.town).selectmenu('refresh', true);
                     }
         });
     }

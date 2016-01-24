@@ -24,7 +24,7 @@ var choices;
 street.addEventListener('keyup',function(event){
         streetsList(this.id);
 });*/
-$.post(server+'?func=towns',{},
+$.post('http://gazel.mansur.ml?func=towns',{},
           function(towns){
             $("#town").html(towns).selectmenu('refresh', true);
             
@@ -141,7 +141,7 @@ $('#phone').live('keyup',function(event){
 });
 $('#begin').live('click',function(){
     var params = 'user_login='+$('#phone').val()+'&name='+$('#name').val()+'&town='+$('#town').val();
-    send_post(server+'?func=enter',params,function(uid){
+    send_post('http://gazel.mansur.ml?func=enter',params,function(uid){
         $('#uid').val(uid);
     });
 });
