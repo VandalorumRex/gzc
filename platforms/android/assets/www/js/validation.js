@@ -1,3 +1,10 @@
+var app_state = 'test';
+if (app_state=='test') { //TEST   
+    var server = 'http://gazel.local';
+}
+else{ //PRODUCTION
+    var server = 'http://gazel.mansur.ml';
+}
 function check(inp,btn) {
     if(inp.val()=='') {
         inp.focus();
@@ -21,6 +28,19 @@ $('#phone').live('blur',function(){
     if (str.match(/^[0-9]{10}$/)) {
         $(this).css('border-color','#b3b3b3');
         btn.show();
+        $.post('http://gazel.mansur.ml?func=check',
+               {'user_login' : this.value},
+               function(data){
+                    if (data) {
+                        var json = JSON.parse(data);
+                        //alert(json.first_name);
+                        $('#name').val(json.first_name);
+                       /* $('#town option').each(function(){
+                            $(this).attr('selected',false);//.selectmenu('refresh', true);
+                        });*/
+                        $('#town').val(json.town).selectmenu('refresh', true);
+                    }
+        });
     }
     else {
         $(this).focus();

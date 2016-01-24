@@ -58,15 +58,14 @@
                         <div data-role="content" >
                             <div class="logo"></div>
                             
-                            <label for="phone">Ваша телефон</label>
+                            <label for="phone">Ваш&nbsp;телефон</label>
                             <input type="phone" name="phone" id="phone" placeholder="10 цифр" pattern="^[0-9]{10}$"/>
-                            <label for="name">Ваша имя</label>
+                            <label for="name">Ваше&nbsp;имя</label>
                             <input type="text" name="name" id="name" />
                             <label for="town">Город</label>
                             <select name="town" id="town" data-native-menu="false"><option>Казань</option></select>
+                            <br />
                             <a href="#page-2" data-role="button" id="begin">Начать заказ</a>
-                            
-                            <!--div id="map" style="margin:0 auto;clear:both;width:250px;height:200px;background:black;"></div-->
                         </div>
                         <div data-role="footer"></div>
                     </div>
@@ -77,11 +76,12 @@
                         </div>
                         <div data-role="content" >
                             <input type="hidden" name="uid" id="uid" />
+                            <input type="hidden" name="order_id" id="order_id" />
                             <label for="from">Откуда</label>
-                            <input type="text" name="from" id="from" value="" />
+                            <input type="text" name="from_" id="from" value="" />
                             <ul data-role="listview" data-inset="true" id="searchresult">					
                             </ul>
-                            <label for="to">Куда</label>
+                            <label for="to_">Куда</label>
                             <input type="text" name="to" id="to" value="" />
                             <label for="date">Дата перевозки</label>
                             <input type="date" name="date" id="date" value="" />
