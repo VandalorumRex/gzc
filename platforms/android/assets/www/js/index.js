@@ -24,6 +24,14 @@ var choices;
 street.addEventListener('keyup',function(event){
         streetsList(this.id);
 });*/
+$.post('http://gazel.local?func=towns',{},
+          function(towns){
+            $("#town").html(towns).selectmenu('refresh', true);
+            //towns = data;
+            $('#town').selectmenu('refresh', true);
+            alert(towns);
+            //document.getElementById('town').innerHTML = towns;
+});
 function init(){     
     myMap = new ymaps.Map("map", {
         center: [latitude, longitude],
@@ -131,3 +139,19 @@ function send_post(url,params,func){
     http.send(params);
 }
 
+$('#begin').live('click',function(){
+    var params = 'user_login='+$('#phone').val()+'&name='+$('#name').val();
+    send_post('http://gazel.local?func=enter',params,function(uid){
+        $('#uid').val(uid);
+    });
+});
+
+$('#order').live('click',function(){
+    var params = 'from='+$('#from').val()+'&to='+$('#to').val()+
+        '&date='+$('#date').val()+'&time='+$('#time').val()+
+        '&price='+$('#price').val()+'&loaders='+$('#loaders').val();
+    send_post('http://gazel.local?func=new_order',params,function(oid){
+        //$('#uid').val(uid);
+        alert(oid);
+    });
+});

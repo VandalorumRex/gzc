@@ -24,13 +24,10 @@ var choices;
 street.addEventListener('keyup',function(event){
         streetsList(this.id);
 });*/
-$.post('http://gazel.local?func=towns',{},
+$.post('http://gazel.mansur.ml?func=towns',{},
           function(towns){
             $("#town").html(towns).selectmenu('refresh', true);
-            //towns = data;
-            $('#town').selectmenu('refresh', true);
-            alert(towns);
-            //document.getElementById('town').innerHTML = towns;
+            
 });
 function init(){     
     myMap = new ymaps.Map("map", {
