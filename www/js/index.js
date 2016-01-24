@@ -135,9 +135,11 @@ function send_post(url,params,func){
     };
     http.send(params);
 }
-
+$('#phone').live('keyup',function(event){
+   this.value = this.value.replace(/[^\d\.]/g, ''); 
+});
 $('#begin').live('click',function(){
-    var params = 'user_login='+$('#phone').val()+'&name='+$('#name').val();
+    var params = 'user_login='+$('#phone').val()+'&name='+$('#name').val()+'&town='+$('#town').val();
     send_post('http://gazel.local?func=enter',params,function(uid){
         $('#uid').val(uid);
     });

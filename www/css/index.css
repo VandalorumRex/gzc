@@ -127,3 +127,4 @@ h1 {
     //-webkit-animation:fade 3000ms infinite;*/
 }
 .invalid { border-color: #ff0000; border-width: 2px;}
+#begin, #order{display:none;}
