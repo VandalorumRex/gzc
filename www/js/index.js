@@ -150,7 +150,7 @@ $('#order').live('click',function(){
     var params = 'from='+$('#from').val()+'&to='+$('#to').val()+
         '&date='+$('#date').val()+'&time='+$('#time').val()+
         '&price='+$('#price').val()+'&loaders='+$('#loaders').val();
-    send_post(server+'?func=new_order',params,function(oid){
+    send_post('http://gazel.mansur.ml?func=new_order',params,function(oid){
         //$('#uid').val(uid);
         alert(oid);
     });
