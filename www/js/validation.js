@@ -1,3 +1,10 @@
+//var app_state = 'test';
+if (app_state=='test') { //TEST   
+    var server = 'http://gazel.local';
+}
+else{ //PRODUCTION
+    var server = 'http://gazel.mansur.ml';
+}
 function check(inp,btn) {
     if(inp.val()=='') {
         inp.focus();
@@ -21,6 +28,16 @@ $('#phone').live('blur',function(){
     if (str.match(/^[0-9]{10}$/)) {
         $(this).css('border-color','#b3b3b3');
         btn.show();
+        $.post(server+'?func=check',
+               {'user_login' : this.value},
+               function(data){
+                    if (data) {
+                        var json = JSON.parse(data);
+                        //alert(json.first_name);
+                        $('#name').val(json.first_name);
+                        $('#town').val(json.town);
+                    }
+        });
     }
     else {
         $(this).focus();
