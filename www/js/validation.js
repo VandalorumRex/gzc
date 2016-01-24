@@ -9,6 +9,9 @@ function check(inp,btn) {
        btn.show();
    }
 }
+
+
+
 $('#page-1 input').live('blur',function(){
    check($(this),$('#begin'));  
 });
