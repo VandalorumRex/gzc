@@ -147,10 +147,19 @@ $('#begin').live('click',function(){
 });
 
 $('#order').live('click',function(){
-    var params = 'from_='+$('#from_').val()+'&to_='+$('#to_').val()+
+    /*var params = 'from_='+$('#from_').val()+'&to_='+$('#to_').val()+
         '&date='+$('#date').val()+'&time='+$('#time').val()+'&car_type='+$('#car_type').val()+
-        '&price='+$('#price').val()+'&loaders='+$('#loaders').val(); alert(params);
-    send_post('http://gazel.mansur.ml?func=new_order',params,function(oid){
+        '&price='+$('#price').val()+'&loaders='+$('#loaders').val(); //alert(params);*/
+    var params = {
+      'from_' : $('#from_').val(),
+      'to_' : $('#to_').val(),
+      'date' : $('#date').val(),
+      'time' : $('#time').val(),
+      'car_type' : $('#car_type').val(),
+      'order_id' : $('#order_id').val(),
+      'client_id' : $('#uid').val()
+    }
+    $.post('http://gazel.mansur.ml?func=new_order',params,function(oid){
         $('#order_id').val(oid); alert(oid);
     });
 });

@@ -142,15 +142,73 @@ $('#phone').live('keyup',function(event){
 $('#begin').live('click',function(){
     var params = 'user_login='+$('#phone').val()+'&name='+$('#name').val()+'&town='+$('#town').val();
     send_post('http://gazel.mansur.ml?func=enter',params,function(uid){
-        $('#uid').val(uid); alert(uid);
+        $('#client_id').val(uid); //alert(uid);
     });
 });
 
 $('#order').live('click',function(){
-    var params = 'from_='+$('#from_').val()+'&to_='+$('#to_').val()+
+    /*var params = 'from_='+$('#from_').val()+'&to_='+$('#to_').val()+
         '&date='+$('#date').val()+'&time='+$('#time').val()+'&car_type='+$('#car_type').val()+
-        '&price='+$('#price').val()+'&loaders='+$('#loaders').val(); alert(params);
-    send_post('http://gazel.mansur.ml?func=new_order',params,function(oid){
-        $('#order_id').val(oid); alert(oid);
+        '&price='+$('#price').val()+'&loaders='+$('#loaders').val(); //alert(params);*/
+    var params = {
+      'from_' : $('#from_').val(),
+      'to_' : $('#to_').val(),
+      'date' : $('#date').val(),
+      'time' : $('#time').val(),
+      'car_type' : $('#car_type').val(),
+      'order_id' : $('#order_id').val(),
+      'client_id' : $('#client_id').val()
+    }
+    $.post('http://gazel.mansur.ml?func=new_order',params,function(oid){
+        $('#order_id').val(oid); //alert(oid);
     });
 });
+
+$("#to_").on("filterablebeforefilter", function(e,data) {
+    var text = $(this).val(); alert(text);
+    var sugList = $('#kuda');
+    if(text.length < 1) {     
+        sugList.html("");
+        sugList.listview("refresh");
+    } else {
+        $.get("http://gazel.local?func=streets", {search:text}, function(res,code) {
+            var str = "";
+            for(var i=0, len=res.length; i<len; i++) {
+                str += "<li>"+res[i]+"</li>";
+            }
+            sugList.html(str);
+            sugList.listview("refresh");
+            console.dir(res);
+        },"json");
+    }
+});
+//$( document ).on( "pageinit", "#page-2", function() {
+    $( "#autocomplete" ).on( "filterablebeforefilter", function ( e, data ) {
+      alert('f');
+        var $ul = $( this ),
+            $input = $( data.input ),
+            value = $input.val(),
+            html = "";
+        $ul.html( "" );
+        if ( value && value.length > 2 ) {
+            $ul.html( "<li><div class='ui-loader'><span class='ui-icon ui-icon-loading'></span></div></li>" );
+            $ul.listview( "refresh" );
+            $.ajax({
+                url: "http://gd.geobytes.com/AutoCompleteCity",
+                dataType: "jsonp",
+                crossDomain: true,
+                data: {
+                    q: $input.val()
+                }
+            })
+            .then( function ( response ) {
+                $.each( response, function ( i, val ) {
+                    html += "<li>" + val + "</li>";
+                });
+                $ul.html( html );
+                $ul.listview( "refresh" );
+                $ul.trigger( "updatelayout");
+            });
+        }
+    });
+//});
