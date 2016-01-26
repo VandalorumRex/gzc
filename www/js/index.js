@@ -190,6 +190,12 @@ $("#mainPage").bind("pageshow", function(e) {
 				target: $('#suggestions'),
 				source: data,
 				link: 'target.html?term=',
+                callback: function(e) {
+					var $a = $(e.currentTarget);
+					$('#searchBox').val( $a.text() );
+					$("#searchBox").autocomplete('clear');
+				},
+				
 				minLength: 1,
 				matchFromStart: false
 			});
