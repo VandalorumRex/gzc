@@ -164,7 +164,7 @@ $('#order').live('click',function(){
     });
 });
 
-$("#to_").on("filterablebeforefilter", function(e,data) {
+/*$("#to_").on("filterablebeforefilter", function(e,data) {
     var text = $(this).val(); alert(text);
     var sugList = $('#kuda');
     if(text.length < 1) {     
@@ -181,34 +181,16 @@ $("#to_").on("filterablebeforefilter", function(e,data) {
             console.dir(res);
         },"json");
     }
-});
-//$( document ).on( "pageinit", "#page-2", function() {
-    $( "#autocomplete" ).on( "filterablebeforefilter", function ( e, data ) {
-      alert('f');
-        var $ul = $( this ),
-            $input = $( data.input ),
-            value = $input.val(),
-            html = "";
-        $ul.html( "" );
-        if ( value && value.length > 2 ) {
-            $ul.html( "<li><div class='ui-loader'><span class='ui-icon ui-icon-loading'></span></div></li>" );
-            $ul.listview( "refresh" );
-            $.ajax({
-                url: "http://gd.geobytes.com/AutoCompleteCity",
-                dataType: "jsonp",
-                crossDomain: true,
-                data: {
-                    q: $input.val()
-                }
-            })
-            .then( function ( response ) {
-                $.each( response, function ( i, val ) {
-                    html += "<li>" + val + "</li>";
-                });
-                $ul.html( html );
-                $ul.listview( "refresh" );
-                $ul.trigger( "updatelayout");
-            });
-        }
-    });
-//});
+});*/
+$("#mainPage").bind("pageshow", function(e) {
+
+			var data = ['C', 'Clojure', 'Java', 'Scala', 'Objective-C', 'C++', 'PHP', 'C#', '(Visual) Basic', 'Python', 'Perl', 'JavaScript', 'Ruby', 'Visual Basic .NET', 'Transact-SQL', 'Lisp', 'Pascal', 'Bash', 'PL/SQL', 'Delphi/Object Pascal', 'Ada', 'MATLAB'];
+
+			$("#searchBox").autocomplete({
+				target: $('#suggestions'),
+				source: data,
+				link: 'target.html?term=',
+				minLength: 1,
+				matchFromStart: false
+			});
+		});
