@@ -184,11 +184,11 @@ $('#order').live('click',function(){
 });*/
 $("#mainPage").bind("pageshow", function(e) {
 
-			var data = ['C', 'Clojure', 'Java', 'Scala', 'Objective-C', 'C++', 'PHP', 'C#', '(Visual) Basic', 'Python', 'Perl', 'JavaScript', 'Ruby', 'Visual Basic .NET', 'Transact-SQL', 'Lisp', 'Pascal', 'Bash', 'PL/SQL', 'Delphi/Object Pascal', 'Ada', 'MATLAB'];
+			//var data = ['C', 'Clojure', 'Java', 'Scala', 'Objective-C', 'C++', 'PHP', 'C#', '(Visual) Basic', 'Python', 'Perl', 'JavaScript', 'Ruby', 'Visual Basic .NET', 'Transact-SQL', 'Lisp', 'Pascal', 'Bash', 'PL/SQL', 'Delphi/Object Pascal', 'Ada', 'MATLAB'];
 
 			$("#searchBox").autocomplete({
 				target: $('#suggestions'),
-				source: data,
+				source: 'http://gazel.mansur.ml?func=streets&search=',
 				link: 'target.html?term=',
                 callback: function(e) {
 					var $a = $(e.currentTarget);
@@ -196,7 +196,7 @@ $("#mainPage").bind("pageshow", function(e) {
 					$("#searchBox").autocomplete('clear');
 				},
 				
-				minLength: 1,
+				minLength: 3,
 				matchFromStart: false
 			});
 		});
