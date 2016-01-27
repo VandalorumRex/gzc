@@ -26,12 +26,13 @@
         <meta name="msapplication-tap-highlight" content="no" />
         <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0a2/jquery.mobile-1.0a2.min.css" />
-        <script src="http://code.jquery.com/jquery-1.4.4.min.js"></script>
-        <script src="http://code.jquery.com/mobile/1.0a2/jquery.mobile-1.0a2.min.js"></script>
+        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
+        <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+        <script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
         <script src="js/validation.js"></script>
         <link rel="stylesheet" type="text/css" href="css/index.css" />
         <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+        <script src="js/autoComplete.js/jqm.autoComplete-1.5.2-min.js"></script>
         <!--link href="js/jQuery-autoComplete-master/jquery.auto-complete.css" rel="stylesheet" />
         <script src="js/jQuery-autoComplete-master/jquery.auto-complete.js"></script-->
         
@@ -50,37 +51,15 @@
                     
                     <input class="street" type="text" id="to" list="streets" /><br />
                     <select id="streets"></select-->
-                    <div data-role="page" id="page-1" data-theme="b" data-dom-cache="true">
+                    <div data-role="page" id="mainPage" data-theme="d" >
                         <div data-role="header" >                           
                             <h1>ГРУЗОПЕРЕВОЗКИ</h1>
                             <!--a href="#settings" data-icon="gear" class="ui-btn-right">Options</a-->
                         </div>
                         <div data-role="content" >
                             <div class="logo"></div>
-                           <ul data-role="listview" data-filter="true" data-filter-reveal="true" data-filter-placeholder="Search cars...">
-                                <li><a href="#">Acura</a></li>
-                                <li><a href="#">Audi</a></li>
-                                <li><a href="#">BMW</a></li>
-                                <li><a href="#">Cadillac</a></li>
-                                <li><a href="#">Chrysler</a></li>
-                                <li><a href="#">Dodge</a></li>
-                                <li><a href="#">Ferrari</a></li>
-                                <li><a href="#">Ford</a></li>
-                                <li><a href="#">GMC</a></li>
-                                <li><a href="#">Honda</a></li>
-                                <li><a href="#">Hyundai</a></li>
-                                <li><a href="#">Infiniti</a></li>
-                                <li><a href="#">Jeep</a></li>
-                                <li><a href="#">Kia</a></li>
-                                <li><a href="#">Lexus</a></li>
-                                <li><a href="#">Mini</a></li>
-                                <li><a href="#">Nissan</a></li>
-                                <li><a href="#">Porsche</a></li>
-                                <li><a href="#">Subaru</a></li>
-                                <li><a href="#">Toyota</a></li>
-                                <li><a href="#">Volkswagen</a></li>
-                                <li><a href="#">Volvo</a></li>
-                            </ul>
+                            <input type="search" id="searchBox" placeholder="Categories">
+                            <ul id="suggestions" data-role="listview" data-inset="true"></ul>
                             <label for="phone">Ваш&nbsp;телефон</label>
                             <input type="tel" name="phone" id="phone" placeholder="10 цифр" pattern="^[0-9]{10}$"/>
                             <label for="name">Ваше&nbsp;имя</label>
@@ -92,6 +71,10 @@
                         </div>
                         <div data-role="footer"></div>
                     </div>
+                    <script>
+
+		
+	</script>
                     <div data-role="page" id="page-2" data-theme="b">
                         <div data-role="header" >
                             <h1>ГРУЗОПЕРЕВОЗКИ</h1>
@@ -152,7 +135,7 @@
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript">
-            app.initialize();
+           // app.initialize();
         </script>
     </body>
 </html>
