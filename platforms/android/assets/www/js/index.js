@@ -185,18 +185,22 @@ $('#order').live('click',function(){
 $("#mainPage").bind("pageshow", function(e) {
 
 			//var data = ['C', 'Clojure', 'Java', 'Scala', 'Objective-C', 'C++', 'PHP', 'C#', '(Visual) Basic', 'Python', 'Perl', 'JavaScript', 'Ruby', 'Visual Basic .NET', 'Transact-SQL', 'Lisp', 'Pascal', 'Bash', 'PL/SQL', 'Delphi/Object Pascal', 'Ada', 'MATLAB'];
+            $("#from_").autocomplete(searchStreet("#from_"));
+			$("#to_").autocomplete(searchStreet("#to_"));
+		});
 
-			$("#searchBox").autocomplete({
-				target: $('#suggestions'),
-				source: 'http://gazel.mansur.ml?func=streets&search=',
-				link: 'target.html?term=',
+function searchStreet(inp){
+    return {
+				target: $(inp+'list'),
+				source: 'http://gazel.mansur.ml?func=streets',
+				//link: 'target.html?term=',
                 callback: function(e) {
 					var $a = $(e.currentTarget);
-					$('#searchBox').val( $a.text() );
-					$("#searchBox").autocomplete('clear');
+					$(inp).val( $a.text() );
+					$(inp).autocomplete('clear');
 				},
 				
 				minLength: 3,
 				matchFromStart: false
-			});
-		});
+    }
+}
