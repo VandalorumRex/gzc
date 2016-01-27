@@ -44,7 +44,7 @@ function init(map_id, json){
             center: [json.stengara.latitude, json.stengara.longitude],
             zoom: 11
         });
-        alert (json.stengara.latitude);
+        //alert (json.stengara.latitude);
         myPlacemark = new ymaps.Placemark([json.stengara.latitude, json.stengara.longitude], { hintContent: 'Откуда', balloonContent: 'Откуда' });
         myMap3.geoObjects.add(myPlacemark);
         myPlacemark2 = new ymaps.Placemark([json.stenga.latitude, json.stenga.longitude], { hintContent: 'Куда', balloonContent: 'Куда' });
@@ -165,7 +165,7 @@ $('#order').live('click',function(){
     }
     $.post('http://gazel.mansur.ml?func=new_order',params,function(response){
         //$('#order_id').val(oid); //
-        alert(response);
+        //alert(response);
         ymaps.ready(init('map_3',JSON.parse(response)));
     });
 });
