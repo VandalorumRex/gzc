@@ -51,15 +51,15 @@
                     
                     <input class="street" type="text" id="to" list="streets" /><br />
                     <select id="streets"></select-->
-                    <div data-role="page" id="mainPage" data-theme="b" >
+                    <div data-role="page" id="mainPage" data-theme="a" data-dom-cache="true">
                         <div data-role="header" >                           
                             <h1>ГРУЗОПЕРЕВОЗКИ</h1>
                             <!--a href="#settings" data-icon="gear" class="ui-btn-right">Options</a-->
                         </div>
-                        <div data-role="content" >
-                            <div class="logo"></div>
+                        <div data-role="content">
+                            <!--div class="logo"></div-->
                             <!--input type="search" id="searchBox" placeholder="Categories"-->
-                            
+                            <div id="map_1" style="margin:0 auto;clear:both;width:90%;height:200px;background:black;"></div>
                             <label for="phone">Ваш&nbsp;телефон</label>
                             <input type="tel" name="phone" id="phone" placeholder="10 цифр" pattern="^[0-9]{10}$"/>
                             <label for="name">Ваше&nbsp;имя</label>
@@ -84,10 +84,10 @@
                             <input type="hidden" name="client_id" id="client_id" value="0" />
                             <input type="hidden" name="order_id" id="order_id" value="0"/>
                             <label for="from_">Откуда</label>
-                            <input type="text" name="from_" id="from_" value="" />
+                            <input type="search" name="from_" id="from_" value="" />
                             <ul id="from_list" data-role="listview" data-inset="true"></ul>
                             <label for="to_">Куда</label>
-                            <input type="text" name="to_" id="to_" value="" />
+                            <input type="search" name="to_" id="to_" value="" />
                             <ul id="to_list" data-role="listview" data-inset="true"></ul>
                             <label for="date">Дата перевозки</label>
                             <input type="date" name="date" id="date" value="" />
@@ -114,15 +114,15 @@
                         </div>
                         <div data-role="footer"></div>  
                     </div>
-                    <div data-role="page" id="page-3" data-theme="b" data-dom-cache="true">
+                    <div data-role="page" id="page-3" data-theme="c" data-dom-cache="false">
                         <div data-role="header" >
-                            <div class="logo"></div>
+                            <!--div class="logo"></div-->
                             <h1>ВАШ ЗАКАЗ ПРИНЯТ!</h1>
-                            <p>В ближайшее время с Вами свяжутся</p>
+                            <p align="center">В ближайшее время с Вами свяжутся</p>
                             <!--a href="#settings" data-icon="gear" class="ui-btn-right">Options</a-->
                         </div>
                         <div data-role="content" >
-                            <div id="map" style="margin:0 auto;clear:both;width:250px;height:200px;background:black;"></div>
+                            <div id="map_3" style="margin:0 auto;clear:both;width:90%;height:600px;background:black;"></div>
                         </div>
                         <div data-role="footer"></div>
                     </div>

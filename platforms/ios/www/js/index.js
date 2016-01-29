@@ -18,7 +18,7 @@
  */
 
 
-var myMap, longitude, latitude, myPlacemark;
+var myMap, myMap3, longitude, latitude, myPlacemark, myPlacemark2;
 var choices;
 /*var street = document.querySelector('.street');;
 street.addEventListener('keyup',function(event){
@@ -29,13 +29,31 @@ $.post('http://gazel.mansur.ml?func=towns',{},
             $("#town").html(towns).selectmenu('refresh', true);
             
 });
-function init(){     
-    myMap = new ymaps.Map("map", {
-        center: [latitude, longitude],
-        zoom: 15
-    });
-    myPlacemark = new ymaps.Placemark([latitude, longitude], { hintContent: 'Ваше местоположение', balloonContent: 'Ваше местоположение' });
-    myMap.geoObjects.add(myPlacemark);
+function init(map_id, json){     
+    
+    if (map_id=='map_1') {
+            myMap = new ymaps.Map(map_id, {
+            center: [latitude, longitude],
+            zoom: 15
+        });
+        myPlacemark = new ymaps.Placemark([latitude, longitude], { hintContent: 'Ваше местоположение', balloonContent: 'Ваше местоположение' });
+        myMap.geoObjects.add(myPlacemark);
+    }
+    if (map_id=='map_3') {
+        latitude = (json.stengara.latitude*1 + json.stenga.latitude*1)*0.5;
+        longitude = (json.stengara.longitude*1 + json.stenga.longitude*1)*0.5;
+        var ayrma = Math.abs(json.stengara.latitude - json.stenga.latitude)
+        //var zoom = 0.4 / ayrma ; alert(latitude+","+longitude+','+zoom);
+        myMap3 = new ymaps.Map(map_id, {
+            center: [latitude, longitude],
+            zoom: 11
+        });
+        //alert (json.stengara.latitude);
+        myPlacemark = new ymaps.Placemark([json.stengara.latitude, json.stengara.longitude], { hintContent: 'Откуда', balloonContent: 'Откуда' });
+        myMap3.geoObjects.add(myPlacemark);
+        myPlacemark2 = new ymaps.Placemark([json.stenga.latitude, json.stenga.longitude], { hintContent: 'Куда', balloonContent: 'Куда' });
+        myMap3.geoObjects.add(myPlacemark2);
+    }
 }
 
 function google_map_init() {
@@ -73,17 +91,7 @@ var app = {
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
         
-        navigator.geolocation.getCurrentPosition(
-            function(position){
-                latitude = position.coords.latitude;
-                longitude = position.coords.longitude;
-                ymaps.ready(init);
-                //google_map_init();
-                //alert(longitude);
-                //streetsList(); 
-            },
-            function(error){
-        });
+        
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
@@ -159,35 +167,29 @@ $('#order').live('click',function(){
       'order_id' : $('#order_id').val(),
       'client_id' : $('#client_id').val()
     }
-    $.post('http://gazel.mansur.ml?func=new_order',params,function(oid){
-        $('#order_id').val(oid); //alert(oid);
+    $.post('http://gazel.mansur.ml?func=new_order',params,function(response){
+        var json = JSON.parse(response);
+        $('#order_id').val(json.order_id); 
+        ymaps.ready(init('map_3',json));
     });
 });
-
-/*$("#to_").on("filterablebeforefilter", function(e,data) {
-    var text = $(this).val(); alert(text);
-    var sugList = $('#kuda');
-    if(text.length < 1) {     
-        sugList.html("");
-        sugList.listview("refresh");
-    } else {
-        $.get("http://gazel.local?func=streets", {search:text}, function(res,code) {
-            var str = "";
-            for(var i=0, len=res.length; i<len; i++) {
-                str += "<li>"+res[i]+"</li>";
-            }
-            sugList.html(str);
-            sugList.listview("refresh");
-            console.dir(res);
-        },"json");
-    }
-});*/
 $("#mainPage").bind("pageshow", function(e) {
-
-			//var data = ['C', 'Clojure', 'Java', 'Scala', 'Objective-C', 'C++', 'PHP', 'C#', '(Visual) Basic', 'Python', 'Perl', 'JavaScript', 'Ruby', 'Visual Basic .NET', 'Transact-SQL', 'Lisp', 'Pascal', 'Bash', 'PL/SQL', 'Delphi/Object Pascal', 'Ada', 'MATLAB'];
-            $("#from_").autocomplete(searchStreet("#from_"));
-			$("#to_").autocomplete(searchStreet("#to_"));
-		});
+    navigator.geolocation.getCurrentPosition(
+        function(position){
+            latitude = position.coords.latitude;
+            longitude = position.coords.longitude;
+            ymaps.ready(init('map_1',[]));
+            //google_map_init();
+            //alert(longitude);
+            //streetsList(); 
+        },
+        function(error){
+    });
+});
+$("#page-2").bind("pageshow", function(e) {
+    $("#from_").autocomplete(searchStreet("#from_"));
+    $("#to_").autocomplete(searchStreet("#to_"));
+});
 
 function searchStreet(inp){
     return {
@@ -204,3 +206,7 @@ function searchStreet(inp){
 				matchFromStart: false
     }
 }
+
+$("#page-3").bind("pageshow", function(e) {
+    
+});
